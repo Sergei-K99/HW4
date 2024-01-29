@@ -9,15 +9,12 @@
             Employee employee2 = new Employee();
             employee2.salary = 400;
 
-            Command.Change(employee1, 50);
-            Console.WriteLine(employee1.salary);
-
-            Command.Change(employee2, 50f);
-            Console.WriteLine(employee2.salary);
-
-            Console.WriteLine(Command.Change(employee1._value, employee2._value));
-            Console.WriteLine(Command.Change(employee1,300, false));
-            Console.WriteLine(Command.Change(employee1,employee2));
+            Console.WriteLine(employee1 + employee2);
+            Console.WriteLine(employee1 - employee2);
+            Console.WriteLine(employee1 < employee2);
+            Console.WriteLine(employee1 > employee2);
+            Console.WriteLine(employee1 == employee2);
+            Console.WriteLine(employee1 != employee2);
 
 
         }
@@ -32,7 +29,38 @@ public abstract class Value
 public class Employee : Value
 {
     public int salary { get { return _value; } set { _value = value; } }
+
+
+    public static int operator +(Employee x, Employee y)
+    {
+        return x._value + y._value;
+    }
+    public static int operator -(Employee x, Employee y)
+    {
+        return x._value - y._value;
+    }
+    public static bool operator >(Employee x, Employee y)
+    {
+        return x._value > y._value;
+    }
+    public static bool operator <(Employee x, Employee y)
+    {
+        return x._value < y._value;
+    }
+
+    public static bool operator ==(Employee x, Employee y)
+    {
+        return x._value == y._value;
+    }
+    public static bool operator !=(Employee x, Employee y)
+    {
+        return x._value != y._value;
+    }
 }
+
+
+
+
 
 public static class Command
 {
@@ -63,4 +91,5 @@ public static class Command
     {
         return v_1 == v_2 ? true : false;
     }
+  
 }
